@@ -1,10 +1,16 @@
+// ignore_for_file: file_names
+
+import 'package:cpssoft_test/screens/user_add.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/user_list.dart';
 // import 'package:giffy_dialog/giffy_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreen createState() => _HomeScreen();
 }
 
@@ -16,18 +22,9 @@ class _HomeScreen extends State<HomeScreen> {
 
   int _selectedIndex = 0;
 
-  void _changeSelectedNavBar(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     const UserList(),
-    const UserList(),
+    const UserAdd(),
     // History(),
   ];
 
@@ -38,6 +35,7 @@ class _HomeScreen extends State<HomeScreen> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,

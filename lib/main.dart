@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'HomeScreen.dart';
+import 'homeScreen.dart';
 import 'splashScreen.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class Cuaca extends StatelessWidget {
       ),
       home: SplashScreen(), // Set the SplashScreen as the initial route
       routes: {
-        '/home': (context) => HomeScreen(), // Add the HomeScreen route
+        '/home': (context) => const HomeScreen(), // Add the HomeScreen route
       },
     );
   }
