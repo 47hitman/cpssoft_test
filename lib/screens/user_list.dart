@@ -19,12 +19,20 @@ class _UserListState extends State<UserList> {
   }
 
   Future<void> _fetchAdditionalData() async {
-    await Endpoint.instance.userget().then((value) {
+    try {
+      final value = await Endpoint.instance.userget();
+
+      if (!mounted) {
+        return; // Avoid calling setState if the widget is no longer mounted
+      }
+
       setState(() {
         print(value);
         userdata = value;
       });
-    });
+    } catch (error) {
+      print("Error fetching data: $error");
+    }
   }
 
   var userdata = [];
@@ -64,37 +72,42 @@ class _UserListState extends State<UserList> {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filteredUserdata.length,
-              itemBuilder: (context, index) {
-                final userData = filteredUserdata[index];
-                final user =
-                    userData['name'] != null && userData['name'].isNotEmpty;
+          userdata.isNotEmpty
+              ? Expanded(
+                  child: ListView.builder(
+                    itemCount: filteredUserdata.length,
+                    itemBuilder: (context, index) {
+                      final userData = filteredUserdata[index];
+                      final user = userData['name'] != null &&
+                          userData['name'].isNotEmpty;
 
-                if (!user) {
-                  return const SizedBox.shrink();
-                }
+                      if (!user) {
+                        return const SizedBox.shrink();
+                      }
 
-                return Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10.0),
+                      return Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        margin: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Text(userData['name']),
+                            Text(userData['address']),
+                            Text(userData['email']),
+                            Text(userData['phoneNumber']),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                  margin: const EdgeInsets.all(10.0),
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      Text(userData['name']),
-                      Text(userData['address']),
-                      Text(userData['email']),
-                      Text(userData['phoneNumber']),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+                )
+              : const Expanded(
+                  child: Center(
+                  child: CircularProgressIndicator(),
+                ))
         ],
       ),
     );

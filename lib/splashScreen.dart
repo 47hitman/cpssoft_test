@@ -11,16 +11,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    // Meminta izin lokasi saat inisialisasi
-    ;
-
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/home');
     });
   }
-
-  // Fungsi untuk meminta izin lokasi
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,9 @@ class Cuaca extends StatelessWidget {
       ),
       home: SplashScreen(), // Set the SplashScreen as the initial route
       routes: {
-        '/home': (context) => const HomeScreen(), // Add the HomeScreen route
+        '/home': (context) => const HomeScreen(
+              selectedIndex: 0,
+            ), // Add the HomeScreen route
       },
     );
   }

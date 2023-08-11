@@ -7,7 +7,7 @@ import 'screens/user_list.dart';
 // import 'package:giffy_dialog/giffy_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required int selectedIndex});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -25,7 +25,6 @@ class _HomeScreen extends State<HomeScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const UserList(),
     const UserAdd(),
-    // History(),
   ];
 
   void _onItemTapped(int index) {
