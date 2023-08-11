@@ -26,9 +26,6 @@ class _UserAddState extends State<UserAdd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('User Add'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -36,7 +33,7 @@ class _UserAddState extends State<UserAdd> {
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
                 onChanged: (value) {
                   setState(() {
                     name = value;
@@ -49,7 +46,7 @@ class _UserAddState extends State<UserAdd> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Address'),
                 onChanged: (value) {
@@ -64,7 +61,7 @@ class _UserAddState extends State<UserAdd> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Email'),
                 onChanged: (value) {
@@ -76,10 +73,13 @@ class _UserAddState extends State<UserAdd> {
                   if (value!.isEmpty) {
                     return 'Please enter an email';
                   }
+                  if (!isValidEmail(value)) {
+                    return 'Please enter a valid email address';
+                  }
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Phone Number'),
                 onChanged: (value) {
@@ -94,9 +94,9 @@ class _UserAddState extends State<UserAdd> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(labelText: 'City'),
+                decoration: const InputDecoration(labelText: 'City'),
                 onChanged: (value) {
                   setState(() {
                     city = value;
@@ -109,22 +109,17 @@ class _UserAddState extends State<UserAdd> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Save logic here
-                    // For example, you can create a user object and save it
-                    // to a database or perform any other action.
-                  }
-                },
-                child: Text('Save'),
-              ),
+              const SizedBox(height: 16),
+              _senderButtonEnabled(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  bool isValidEmail(String email) {
+    return RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(email);
   }
 
   Widget _senderButtonEnabled() {
@@ -148,40 +143,42 @@ class _UserAddState extends State<UserAdd> {
                   style: TextStyle(fontSize: 18.0, color: Colors.white)),
             ),
             onPressed: () {
-              setState(() {
-                isLoading = true;
-                print(" aaaaa ------- ");
-              });
-              Endpoint.instance
-                  .userpost(
-                name,
-                address,
-                email,
-                phoneNumber,
-                city,
-              )
-                  .then((value) {
+              if (_formKey.currentState!.validate()) {
                 setState(() {
-                  print("Payment response: $value");
-                  if (value == "[]") {
-                    // isLoading = false;
-                    print("error");
-                    // print(globals.serviceId);
-                    // failed();
-                  } else {
-                    // isLoading = false;
-                    print("oke");
-                    // print(globals.serviceId);
-                    // RegisterDialog(context);
-                  }
+                  isLoading = true;
+                  print(" aaaaa ------- ");
                 });
-              }).catchError((e) {
-                print('Payment Error');
-                print(e);
-                // print(globals.serviceId);
-                // isLoading = false;
-                // _showDialogTimeout();
-              });
+                Endpoint.instance
+                    .userpost(
+                  name,
+                  address,
+                  email,
+                  phoneNumber,
+                  city,
+                )
+                    .then((value) {
+                  setState(() {
+                    print("Payment response: $value");
+                    if (value == "[]") {
+                      isLoading = false;
+                      print("error");
+                      // print(globals.serviceId);
+                      // failed();
+                    } else {
+                      isLoading = false;
+                      print("oke");
+                      // print(globals.serviceId);
+                      // RegisterDialog(context);
+                    }
+                  });
+                }).catchError((e) {
+                  print('Payment Error');
+                  print(e);
+                  // print(globals.serviceId);
+                  // isLoading = false;
+                  // _showDialogTimeout();
+                });
+              }
             });
   }
 }
