@@ -44,12 +44,12 @@ class _HomeScreen extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.task),
+            icon: Icon(Icons.dashboard),
             label: 'Delivery List',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.refresh),
-            label: 'Confirm',
+            icon: Icon(Icons.people_alt),
+            label: 'Add User',
           ),
         ],
         currentIndex: _selectedIndex,

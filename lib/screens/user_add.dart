@@ -155,7 +155,6 @@ class _UserAddState extends State<UserAdd> {
               if (_formKey.currentState!.validate()) {
                 setState(() {
                   isLoading = true;
-                  print(" aaaaa ------- ");
                 });
                 Endpoint.instance
                     .userpost(
@@ -169,11 +168,9 @@ class _UserAddState extends State<UserAdd> {
                   setState(() {
                     if (value == "[]") {
                       isLoading = false;
-                      print("error");
                       failed();
                     } else {
                       isLoading = false;
-                      print("oke");
                       RegisterDialog(context);
                     }
                   });
@@ -200,12 +197,6 @@ class _UserAddState extends State<UserAdd> {
             content: const Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Container(
-                //   width: 100,
-                //   height: 100,
-                //   child: SvgPicture.asset(
-                //       'assets/icons/iconprofile/success.svg'),
-                // ),
                 SizedBox(height: 15),
                 Text(
                   "User Berhasil Ditambahkan ",
@@ -227,9 +218,6 @@ class _UserAddState extends State<UserAdd> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      // Your button logic here
-                      // ...
-
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -237,7 +225,6 @@ class _UserAddState extends State<UserAdd> {
                                 const HomeScreen(selectedIndex: 0)),
                         (Route<dynamic> route) => false,
                       );
-                      print('Pressed');
                     },
                   ),
                 ),
@@ -260,17 +247,9 @@ class _UserAddState extends State<UserAdd> {
           contentPadding: const EdgeInsets.only(
             top: 20.0,
           ),
-          content: Container(
-              child: const Column(
+          content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Container(
-              //   width: 100,
-              //   height: 100,
-              //   child: SvgPicture.asset(
-              //     'assets/icons/iconprofile/failed.svg',
-              //   ),
-              // ),
               SizedBox(height: 15),
               Text(
                 "Gagal",
@@ -286,14 +265,14 @@ class _UserAddState extends State<UserAdd> {
                         TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
               ),
             ],
-          )),
+          ),
           actions: <Widget>[
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20, top: 15),
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(8)),
                   minWidth: 150,
                   color: const Color(0xFFFF9900),
                   child: const Text(

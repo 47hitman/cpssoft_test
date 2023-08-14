@@ -15,10 +15,6 @@ class Endpoint {
     final http.Response response = await http.get(
       Uri.parse('${apiAddress}user'),
     );
-    // print("code cuaca");
-    // print(response.request);
-    // print(response.body);
-    // print(response);
     return _response(response);
   }
 
@@ -40,29 +36,13 @@ class Endpoint {
           "phoneNumber": phoneNumber,
           "city": city,
         }));
-    print('onrest');
-    print(response.statusCode);
-    print(response.body);
 
     if (response.statusCode == 200) {
-      print("work");
       return jsonDecode(response.body);
     } else {
       return null;
     }
   }
-
-//data cuaca perwilayah
-  // Future cuacawilayah(int wilayahCode) async {
-  //   final http.Response response = await http.get(
-  //     Uri.parse('${apiAddress}user/$wilayahCode.json'),
-  //   );
-  //   print("code cuaca");
-  //   print(response.request);
-  //   print(response.body);
-  //   print(response);
-  //   return _response(response);
-  // }
 }
 
 dynamic _response(http.Response response) {

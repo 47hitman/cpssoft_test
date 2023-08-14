@@ -55,7 +55,7 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Fetching Example'),
+        title: const Text('User List'),
       ),
       body: Column(
         children: [
