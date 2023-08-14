@@ -45,7 +45,7 @@ class _HomeScreen extends State<HomeScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
-            label: 'Delivery List',
+            label: 'User List',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people_alt),

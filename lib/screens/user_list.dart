@@ -94,10 +94,38 @@ class _UserListState extends State<UserList> {
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
                           children: [
-                            Text(userData['name']),
-                            Text(userData['address']),
-                            Text(userData['email']),
-                            Text(userData['phoneNumber']),
+                            Row(
+                              children: [
+                                const Text(
+                                  "Nama : ",
+                                ),
+                                Text(userData['name']),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  "Alamat : ",
+                                ),
+                                Text(userData['address']),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  "Email : ",
+                                ),
+                                Text(userData['email']),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  "Nomor Handphone : ",
+                                ),
+                                Text(userData['phoneNumber']),
+                              ],
+                            ),
                           ],
                         ),
                       );

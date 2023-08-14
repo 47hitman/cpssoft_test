@@ -23,13 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Stack(
           children: const [
-            // Image(
-            //   image: AssetImage(
-            //     "assets/Icons.png",
-            //   ),
-            //   width: 100, // Set the width to 100 pixels
-            //   height: 100, // Set the height to 100 pixels
-            // ),
+            Image(
+              image: AssetImage(
+                "assets/Icons.png",
+              ),
+              width: 100, // Set the width to 100 pixels
+              height: 100, // Set the height to 100 pixels
+            ),
           ],
         ),
       ),
