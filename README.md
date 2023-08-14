@@ -2,10 +2,14 @@
 
 Selamat datang di dokumentasi untuk Aplikasi Pencari Pengguna!
 
-Aplikasi ini menggunakan paket-paket berikut:
+Aplikasi ini menggunakan dependencies berikut:
 
 - `http: ^1.1.0`
 - `intl: ^0.18.1`
+<div style="display: flex;">
+  <img src="https://cdn.discordapp.com/attachments/1055490015834157058/1140483076556849152/Screenshot_1691982718.png" alt="Image 1" width="300" height="auto">
+  <img src="https://media.discordapp.net/attachments/1055490015834157058/1140483076779151471/Screenshot_1691982721.png" alt="Image 2" width="300" height="auto">
+</div>
 
 Fitur-fitur yang tersedia dalam aplikasi ini adalah:
 
